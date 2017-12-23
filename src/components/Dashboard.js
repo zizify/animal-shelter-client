@@ -1,5 +1,5 @@
 import React from 'react';
-// import Pet from './Pet';
+import Pet from './Pet';
 
 import {connect} from 'react-redux';
 
@@ -13,12 +13,16 @@ export class Dashboard extends React.Component {
     }
 
     render() {
-        return(
-            <div className="dashboard-container">
-                {/* <Pet animal={this.props.catData} species="cat" onAdopt={input => console.log('Pet adopted')}/> */}
-                {/* <Pet animal={this.props.dogData} species="dog" onAdopt={input => console.log('Pet adopted')}/> */}
-            </div>
-        )
+        if (this.props.catData && this.props.dogData) {
+            return(
+                <div className="dashboard-container">
+                    <Pet animal={this.props.catData} species="cat" onAdopt={input => console.log('Pet adopted')}/>
+                    <Pet animal={this.props.dogData} species="dog" onAdopt={input => console.log('Pet adopted')}/>
+                </div>
+            )
+        }
+
+        else return(<div>Loading</div>);
     }
 }
 
