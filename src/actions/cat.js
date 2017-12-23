@@ -52,7 +52,7 @@ export const adoptCatError = error => ({
 });
 
 export const ADOPT_CAT_REQUEST = 'ADOPT_CAT_REQUEST';
-export const adoptCatRequest = ({
+export const adoptCatRequest = () => ({
 	type: ADOPT_CAT_REQUEST,
 	loading: true,
 	error: null
@@ -60,12 +60,13 @@ export const adoptCatRequest = ({
 
 export const adoptCat = () => dispatch => {
 	dispatch(adoptCatRequest());
+	console.log('adoptCat() called');
 	fetch(`${REACT_APP_API_BASE_URL}/cat`, {method: 'DELETE'})
 		.then(res => {
-			if (!res.ok) {
+			if (res.status !== 204) {
 				return Promise.reject(res.statusText);
 			}
-			return res.json();
+			return;
 		})
 		.then(() => dispatch(fetchCat()))
 		.catch((err) => dispatch(adoptCatError(err)));

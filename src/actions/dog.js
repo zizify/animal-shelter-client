@@ -52,7 +52,7 @@ export const adoptDogError = error => ({
 });
 
 export const ADOPT_DOG_REQUEST = 'ADOPT_DOG_REQUEST';
-export const adoptDogRequest = ({
+export const adoptDogRequest = () => ({
 	type: ADOPT_DOG_REQUEST,
 	loading: true,
 	error: null

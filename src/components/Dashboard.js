@@ -3,8 +3,8 @@ import Pet from './Pet';
 
 import {connect} from 'react-redux';
 
-import {fetchCat} from '../actions/cat';
-import {fetchDog} from '../actions/dog';
+import {fetchCat, adoptCat} from '../actions/cat';
+import {fetchDog, adoptDog} from '../actions/dog';
 
 export class Dashboard extends React.Component {
     componentDidMount() {
@@ -16,8 +16,8 @@ export class Dashboard extends React.Component {
         if (this.props.catData && this.props.dogData) {
             return(
                 <div className="dashboard-container">
-                    <Pet animal={this.props.catData} species="cat" onAdopt={input => console.log('Pet adopted')}/>
-                    <Pet animal={this.props.dogData} species="dog" onAdopt={input => console.log('Pet adopted')}/>
+                    <Pet animal={this.props.catData} species="cat" onAdopt={() => this.props.dispatch(adoptCat())}/>
+                    <Pet animal={this.props.dogData} species="dog" onAdopt={() => this.props.dispatch(adoptDog())}/>
                 </div>
             )
         }
