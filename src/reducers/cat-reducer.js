@@ -1,4 +1,4 @@
-import catActions from '../actions/index';
+import {catActions} from '../actions/index';
 
 const initialState = {
 	loading: false,

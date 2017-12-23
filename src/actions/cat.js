@@ -1,4 +1,4 @@
-import {REACT_API_API_BASE_URL} from '../config';
+import {REACT_APP_API_BASE_URL} from '../config';
 
 export const FETCH_CAT_SUCCESS = 'FETCH_CAT_SUCCESS';
 export const fetchCatSuccess = cat => ({
@@ -16,7 +16,7 @@ export const fetchCatError = error => ({
 });
 
 export const FETCH_CAT_REQUEST = 'FETCH_CAT_REQUEST';
-export const fetchCatRequest = ({
+export const fetchCatRequest = () => ({
 	type: FETCH_CAT_REQUEST,
 	loading: true,
 	error: null
@@ -24,7 +24,7 @@ export const fetchCatRequest = ({
 
 export const fetchCat = () => dispatch => {
 	dispatch(fetchCatRequest());
-	fetch(`${REACT_API_API_BASE_URL}/cat`).then(res => {
+	fetch(`${REACT_APP_API_BASE_URL}/cat`).then(res => {
 		if (!res.ok) {
 			return Promise.reject(res.statusText);
 		}
@@ -60,7 +60,7 @@ export const adoptCatRequest = ({
 
 export const adoptCat = () => dispatch => {
 	dispatch(adoptCatRequest());
-	fetch(`${REACT_API_API_BASE_URL}/cat`, {method: 'DELETE'})
+	fetch(`${REACT_APP_API_BASE_URL}/cat`, {method: 'DELETE'})
 		.then(res => {
 			if (!res.ok) {
 				return Promise.reject(res.statusText);
@@ -70,3 +70,5 @@ export const adoptCat = () => dispatch => {
 		.then(() => dispatch(fetchCat()))
 		.catch((err) => dispatch(adoptCatError(err)));
 };
+
+console.log(REACT_APP_API_BASE_URL);

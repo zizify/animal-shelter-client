@@ -1,4 +1,4 @@
-import dogActions from '../actions/index';
+import {dogActions} from '../actions/index';
 
 const initialState = {
 	loading: false,
