@@ -60,7 +60,6 @@ export const adoptCatRequest = () => ({
 
 export const adoptCat = () => dispatch => {
 	dispatch(adoptCatRequest());
-	console.log('adoptCat() called');
 	fetch(`${REACT_APP_API_BASE_URL}/cat`, {method: 'DELETE'})
 		.then(res => {
 			if (res.status !== 204) {

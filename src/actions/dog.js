@@ -62,10 +62,10 @@ export const adoptDog = () => dispatch => {
 	dispatch(adoptDogRequest());
 	fetch(`${REACT_APP_API_BASE_URL}/dog`, {method: 'DELETE'})
 		.then(res => {
-			if (!res.ok) {
+			if (res.status !== 204) {
 				return Promise.reject(res.statusText);
 			}
-			return res.json();
+			return;
 		})
 		.then(() => dispatch(fetchDog()))
 		.catch((err) => dispatch(adoptDogError(err)));
